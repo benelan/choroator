@@ -1,0 +1,88 @@
+<!--  
+Ben Elan
+Spring 2018
+
+HTML and JavaScript was adapted from:
+http://leafletjs.com/examples/choropleth/
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Choropleth Map</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Leaflet -->
+        <link rel="stylesheet" href="lib/leaflet.css"/>
+        <script src="lib/leaflet.js"></script>
+        
+        <!-- Mapbox -->
+        <script src='lib/mapbox-gl.js'></script>
+        <link href='lib/mapbox-gl.css' rel='stylesheet'/>
+
+        <!-- FAVICON -->
+        <link rel="shortcut icon" href="other/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="other/favicon.ico" type="image/x-icon">
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                background: black;
+            }
+            h1 {
+                font: 14px/16px Arial, Helvetica, sans-serif;
+                color: grey;
+                text-align: right;
+            }
+    
+            h2 {
+                font: Arial, Helvetica, sans-serif;
+                color: white;
+                text-align: center;
+            }
+
+            #map {
+                margin: auto;
+                width: 75%;
+                height: 75%;
+                padding: 10px;
+                border: 3px solid grey;
+            }
+            .info { 
+                padding: 6px 8px;
+                font: 14px/16px Arial, Helvetica, sans-serif;
+                background: white;
+                background: rgba(255,255,255,0.8);
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 5px;
+            } 
+            .info h4 { 
+                margin: 0 0 5px;
+                color: #777;
+            }
+            .legend { 
+                text-align: left;
+                line-height: 18px;
+                color: #555;
+            } 
+            .legend i {
+                width: 18px;
+                height: 18px;
+                float: left;
+                margin-right: 8px;
+                opacity: 0.7;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Ben Elan<br>Spring 2018</h1>
+        <h2>US Choropleth Map</h2>
+        <!-- Map-->
+        <div id='map'></div>
+        <!-- JSON -->
+        <script type="text/javascript" src="data/json/output.json"></script>
+        <!-- JavaScript -->
+        <script type="text/javascript" src="js/map.js"></script>
+    </body>
+</html>
