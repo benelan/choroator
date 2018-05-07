@@ -1,6 +1,6 @@
 # README
 
-The United States Choropleth Map Creator was made by Ben Elan for a final project in Spring 2018. The project takes a user-created csv file as an input and creates an interactive Leaflet map to be displayed in a web browser.
+The United States Choropleth Map Creator was made by Ben Elan for a final project in Spring 2018. The project takes a user's csv file as an input and creates an interactive Leaflet map to be displayed in a web browser.
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ python3 app.py
 
 #### dataImport
 
-This is the commandline version. Name the csv file you wish to use 'data.csv' and place it in the cmc/data/csv directory. If one of the commandline arguements is misspelled or omitted the default values are chosen. The script takes 4 commandline arguments with the following options:
+This is the commandline version. Name the csv file you wish to use 'data.csv' and place it in the data/csv directory. If one of the commandline arguements is misspelled or omitted the default values are chosen. The script takes 4 commandline arguments with the following options:
 __Data classification__
 * 'jenks' (Default)
 * 'quantile'
