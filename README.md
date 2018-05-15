@@ -34,6 +34,7 @@ There are three python files located in the python directory:
 #### dataImport
 
 This is the command line version. Name the csv file you wish to use 'data.csv' and place it in the cmc/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 4 command line arguments with the following options:
+
 __Data classification__
 * 'jenks' (Default)
 * 'quantile'
@@ -84,6 +85,7 @@ python3 app.py
 #### createFolium
 
 I added functionality to bypass the leaflet javscript/html using a python module called folium.
+
 Command line package installation:
 ```
 pip install folium

@@ -1,8 +1,0 @@
-1)
-I plan on writing a python script that takes a csv file of state names and some statistic (population, homicide rate, etc) as an input and converts it into an output JSON file that contains the desired information. This JSON will then be used to create a leaflet web map with the data.
-
-2) 
-This will make the process easier because you can switch out the csv file very easily. By doing so, you will be able to map a completely different dataset. The goal is that to switch statistics, the only thing that needs to change in the code is the input csv file name.
-
-3)
-I will give some sample csv data to use. A python script, an html file,  a javascript file, and a json file. I will add a readme that describes the process.
