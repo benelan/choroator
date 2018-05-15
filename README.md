@@ -11,8 +11,9 @@ These instructions will get you a copy of the project up and running on your loc
 To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need [PySal](http://pysal.readthedocs.io/en/latest/) which can be installed from the terminal (once Python is already installed) by typing
 
 ```
-python pip -m install pysal
+pip -m install pysal
 ```
+If you are having trouble with pip visit [their website](https://packaging.python.org/tutorials/installing-packages/).
 
 ### Creating the CSV
 
@@ -26,20 +27,13 @@ State,Data (ie. California,53489)
 
 If you have missing data, that is okay. Just do not put the State in the CSV file and the script will handle it properly.
 
-### The Python Script
+### The Python Scripts
 
-There are two python files located in the python directory:
-
-#### app
-
-This app is a self explanatory GUI built using TKinter.
-````
-python3 app.py
-````
+There are three python files located in the python directory:
 
 #### dataImport
 
-This is the commandline version. Name the csv file you wish to use 'data.csv' and place it in the data/csv directory. If one of the commandline arguements is misspelled or omitted the default values are chosen. The script takes 4 commandline arguments with the following options:
+This is the command line version. Name the csv file you wish to use 'data.csv' and place it in the cmc/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 4 command line arguments with the following options:
 __Data classification__
 * 'jenks' (Default)
 * 'quantile'
@@ -71,7 +65,7 @@ example runs:
 ```
 python3 dataImport.py
 ```
-* equal interval, color defaults to blue due to misspelling, light , no normalization
+* equal interval, color defaults to blue due to misspelling, light base map, no normalization
 ```
 python3 dataImport.py equal ultraviolet light
 ```
@@ -80,12 +74,38 @@ python3 dataImport.py equal ultraviolet light
 python3 dataImport.py quantile gold dark density
 ```
 
+#### app
+
+This app is a self explanatory GUI built using TKinter.
+````
+python3 app.py
+````
+
+#### createFolium
+
+I added functionality to bypass the leaflet javscript/html using a python module called folium.
+Command line package installation:
+```
+pip install folium
+pip install pandas
+```
+The CSV header is formated a little bit differently.
+* Header (first row):
+'State',Title (ie. State,Income)
+
+The rest of the CSV stays the same
+* Data (the rest):
+State,Data (ie. California,53489)
+
+The data classification is quantile. The output is 'foliumMap.html' 
+
 ## Built With
 
 * [Leaflet](http://leafletjs.com/) - web mapping framework
 * [Mapbox](https://www.mapbox.com/) - base maps
 * [ColorBrewer](http://pysal.readthedocs.io/en/latest/index.html) - color palletes
 * [PySal](http://pysal.readthedocs.io/en/latest/index.html) - data classification
+* [Folium](http://folium.readthedocs.io/en/latest/) - python leaflet module
 * [Tkinter](https://wiki.python.org/moin/TkInter) - GUI
 
 ## Data Sources

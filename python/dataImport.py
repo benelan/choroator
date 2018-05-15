@@ -1,7 +1,7 @@
 # Ben Elan
 # Spring 2018
-# Python script to insert csv data into a JSON file
-# Takes a preformated-JSON and a CSV as inputs
+# Python script to insert csv data into a GEOJSON file
+# Takes a preformated GEOJSON and a CSV as inputs
 # user can create their own CSV with their own data
 # CSV Format:
         # Header (first row):
@@ -10,7 +10,7 @@
         # Data (the rest):
                 # State,Data
                         # ie (California,53489)
-print("RUNNING DATA CONVERSION")
+print("RUNNING DATA IMPORT")
 print("importing libraries")
 import datetime
 start = datetime.datetime.now()

@@ -1,4 +1,8 @@
-print("RUNNING DATA CONVERSION")
+# Ben Elan
+# Spring 2018
+# GUI version of DataImport.py
+
+print("RUNNING APP")
 print("importing libraries")
 import datetime
 start = datetime.datetime.now()
