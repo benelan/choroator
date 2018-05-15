@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need [PySal](http://pysal.readthedocs.io/en/latest/) which can be installed from the terminal (once Python is already installed) by typing
 
 ```
-pip -m install pysal
+pip install pysal
 ```
 If you are having trouble with pip visit [their website](https://packaging.python.org/tutorials/installing-packages/).
 

@@ -5,8 +5,8 @@ Spring 2018
 HTML and JavaScript was adapted from:
 http://leafletjs.com/examples/choropleth/
 */
-// access key
 
+// access key
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmVuZWxhbiIsImEiOiJjamVicTV0MnYwaHFrMnFsYWNpcTBtYms0In0.FI4MYJLQCioc-LmV-zZcpQ';
 var map = L.map('map').setView([37.8, -96], 4);
 
