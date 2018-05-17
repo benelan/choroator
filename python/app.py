@@ -13,6 +13,8 @@ import csv
 import sys
 import pysal as ps # for data classification
 import webbrowser, os
+import folium
+import pandas as pd
 
 def clicked():
         print ("opening csv")
@@ -28,7 +30,7 @@ def clicked():
                 classification = classVal.get()
                 color = colorVal.get()
                 base = baseVal.get()
-             
+                colorFolium = '';
                 print ("inserting data")
                 # iterate through the csv
                 # inserting number data
@@ -67,14 +69,19 @@ def clicked():
                 # set colors
                 if color == 1: # blue
                         data["color"] = 'blue'
+                        colorFolium = "GnBu";
                 elif color == 2: # green
                        data["color"] = 'green'
+                       colorFolium = "Greens"
                 elif color == 3: # red
                        data["color"] = 'red'
+                       colorFolium = 'OrRd'
                 elif color == 4: # purple
                         data["color"] = 'purple'
+                        colorFolium = 'RdPu'
                 elif color == 5: # gold
                         data["color"] = 'gold'
+                        colorFolium = 'YlOrBr'
 
                 # base maps
                 if base == 1: # blue
@@ -149,6 +156,40 @@ def clicked():
                 print(str(runtime))
                 webbrowser.open('file://' + os.path.realpath('../index.html'))
                 window.destroy()
+
+
+                # ---FOLIUM--- #
+
+
+                # read json
+                state_geo = os.path.join('../data/json', 'input.json')
+
+                # ready csv
+                state_csv = os.path.join('../data/csv', window.filename)
+                state_data = pd.read_csv(state_csv)
+                
+                # create map
+                m = folium.Map(location=[37.8, -96], zoom_start=4) #, tiles="Mapbox Control room")
+                
+                # add data as choropleth
+                print(data["grade"])
+                m.choropleth(
+                    geo_data=state_geo,
+                    name='choropleth',
+                    data=state_data,
+                    columns=[csvList[0][0], csvList[0][1]],
+                    key_on='feature.properties.name',
+                    #threshold_scale= data["grade"],                # not working
+                    fill_color=colorFolium,
+                    fill_opacity=0.7,
+                    line_opacity=0.2,
+                    legend_name=csvList[0][0] + ' (' + csvList[0][1] + ')'    
+                )
+
+                # save
+                folium.LayerControl().add_to(m)
+                m.save(outfile='../foliumMap.html')
+                webbrowser.open('file://' + os.path.realpath('../foliumMap.html'))
 
 window = Tk()
 

@@ -1,4 +1,4 @@
-# README
+# Choropleth Map Creator
 
 The United States Choropleth Map Creator was made by Ben Elan for a final project in Spring 2018. The project takes a user's csv file as an input and creates an interactive Leaflet map to be displayed in a web browser.
 
@@ -97,6 +97,20 @@ The rest of the CSV stays the same
 State,Data (ie. California,53489)
 
 The data classification is quantile. The output is 'foliumMap.html' 
+
+
+## TODO
+
+To do list
+
+### Folium
+* Add basemap support
+* add class break support
+* add density support
+
+### Other
+* start integrating county GEOJSONs
+
 
 ## Built With
 
