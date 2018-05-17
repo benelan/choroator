@@ -27,35 +27,35 @@ If you have missing data, that is okay. Just do not put the State in the CSV fil
 
 ## The Python Scripts
 
-There are three python files located in the python directory:
+There are two python files located in the python directory:
 
 ### __dataImport__
 
-This is the command line version. Name the csv file you wish to use 'data.csv' and place it in the cmc/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 4 command line arguments with the following options:
+This is the command line version. Name the CSV file you wish to use 'data.csv' and place it in the cmc/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 4 command line arguments with the following options:
 
 __Data classification__
 * 'jenks' (Default)
 * 'quantile'
-*  'percentile'
-*  'equal' (Equal Interval)
-*  'natural' (Natural Breaks)
+* 'percentile'
+* 'equal' (Equal Interval)
+* 'natural' (Natural Breaks)
 
 __color palette__
 * 'blue' (Default)
 * 'green'
-*  'red'
-*  'gold' 
-*  'purple'
+* 'red'
+* 'gold' 
+* 'purple'
 
 __base map__
 * 'satellite' (Default)
 * 'dark'
-*  'light'
-*  'streets' 
-*  'outdoors'
+* 'light'
+* 'streets' 
+* 'outdoors'
 
 __data normalization__
-* 'none' (Default)
+* none (Default)
 * 'density' (divides by state's area)
 
 **Note: when normalizing by area, 'District of Columbia' is omitted from the pysal classsifaction functions**
@@ -83,13 +83,7 @@ python3 app.py
 
 I added functionality to bypass the leaflet javscript/html using a python module called folium.
 
-Command line package installation:
-```
-pip install folium
-pip install pandas
-```
-
-The data classification and basemap options do not currently work for folium. The breaks are quantile. The output is 'foliumMap.html' 
+The data classification and density options do not currently work for folium. The breaks are set to quantile as default. The output file is 'foliumMap.html' 
 
 
 ## TODO
@@ -97,13 +91,15 @@ The data classification and basemap options do not currently work for folium. Th
 To do list
 
 ### Folium
-* Add basemap support
 * add class break support
 * add density support
+* add folium support to command line script
+* scale text doesn't show up on dark base maps
 
 ### Other
 * let user choose folium/web or both from GUI
 * start integrating county GEOJSONs
+* clean up and comment code
 
 
 

@@ -16,6 +16,7 @@ import webbrowser, os
 import folium
 import pandas as pd
 
+# -- BUTTON EVENT -- #
 def clicked():
         print ("opening csv")
         # to change the dataset
@@ -159,8 +160,6 @@ def clicked():
 
 
                 # ---FOLIUM--- #
-
-
                 # read json
                 state_geo = os.path.join('../data/json', 'input.json')
 
@@ -168,31 +167,39 @@ def clicked():
                 state_csv = os.path.join('../data/csv', window.filename)
                 state_data = pd.read_csv(state_csv)
                 
+                # mapbox access key
+                accessToken = 'pk.eyJ1IjoiYmVuZWxhbiIsImEiOiJjamVicTV0MnYwaHFrMnFsYWNpcTBtYms0In0.FI4MYJLQCioc-LmV-zZcpQ';
+                
                 # create map
-                m = folium.Map(location=[37.8, -96], zoom_start=4) #, tiles="Mapbox Control room")
+                print(base)
+                m = folium.Map(
+                    location=[37.8, -96], 
+                    zoom_start=4, 
+                    tiles=('http://{s}.tiles.mapbox.com/v4/mapbox.' + data["base"] + '/{z}/{x}/{y}.png?access_token=' + accessToken),
+                    attr='Mapbox Basemaps')
                 
                 # add data as choropleth
-                print(data["grade"])
                 m.choropleth(
                     geo_data=state_geo,
                     name='choropleth',
                     data=state_data,
-                    columns=[csvList[0][0], csvList[0][1]],
+                    columns=[csvList[0][0], csvList[0][1]],         # from csv
                     key_on='feature.properties.name',
                     #threshold_scale= data["grade"],                # not working
-                    fill_color=colorFolium,
+                    fill_color=colorFolium,                         # sets color above
                     fill_opacity=0.7,
                     line_opacity=0.2,
-                    legend_name=csvList[0][0] + ' (' + csvList[0][1] + ')'    
+                    legend_name=csvList[0][0] + ' (' + csvList[0][1] + ')'    # set from csv
                 )
 
-                # save
+                # save and open
                 folium.LayerControl().add_to(m)
                 m.save(outfile='../foliumMap.html')
                 webbrowser.open('file://' + os.path.realpath('../foliumMap.html'))
 
-window = Tk()
 
+# -- TKINTER -- #
+window = Tk()
 
 window.title("Choropleth Map Creator")
 
@@ -203,7 +210,6 @@ chk_state = BooleanVar()
 chk_state.set(False) #set check state
 
 window.update()
-
 
 window.filename =  filedialog.askopenfilename(initialdir = "../data/csv",title = "Select file",filetypes = (("csv files","*.csv"),("all files","*.*")))
 
