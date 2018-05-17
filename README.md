@@ -8,8 +8,8 @@ To run the script you must have [Python 3](https://www.python.org/downloads/) in
 
 ```
 pip install pysal
-pip install folium
 pip install pandas
+pip install folium
 ```
 If you are having trouble with pip visit [their website](https://packaging.python.org/tutorials/installing-packages/).
 
@@ -27,15 +27,15 @@ If you have missing data, that is okay. Just do not put the State in the CSV fil
 
 ## The Python Scripts
 
-There are two python files located in the python directory:
+There are three python files located in the python directory:
 
-### __dataImport__
+### __dataImport.py__
 
-This is the command line version. Name the CSV file you wish to use 'data.csv' and place it in the cmc/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 4 command line arguments with the following options:
+This is the command line version. Name the CSV file you wish to use 'data.csv' and place it in the choropleth/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 5 command line arguments with the following options:
 
 __Data classification__
-* 'jenks' (Default)
-* 'quantile'
+* 'quantile' (Default)
+* 'jenks'
 * 'percentile'
 * 'equal' (Equal Interval)
 * 'natural' (Natural Breaks)
@@ -58,10 +58,14 @@ __data normalization__
 * none (Default)
 * 'density' (divides by state's area)
 
+__mapType__
+* web (Default)
+* 'folium' (creates both web and folium maps)
+
 **Note: when normalizing by area, 'District of Columbia' is omitted from the pysal classsifaction functions**
 
 example runs:
-* defaults to jenks, blue, satellite, no normalization
+* defaults to quantile, blue, satellite, no normalization
 ```
 python3 dataImport.py
 ```
@@ -69,48 +73,59 @@ python3 dataImport.py
 ```
 python3 dataImport.py equal ultraviolet light
 ```
-* quantile classification, gold color scale, dark base map, normalized data based on area
+* jenks classification, gold color scale, dark base map, normalized data based on area
 ```
-python3 dataImport.py quantile gold dark density
+python3 dataImport.py jenks gold dark density
 ```
 
-### __app__
+### __app.py__
 
-This app is a self explanatory GUI built using TKinter.
+This GUI is built using TKinter. The app first prompts you to choose a csv file. The path defaults to the choropleth/data/csv directory but you can chose a file from anywhere in your operating system. You are then given the same options described above in GUI format.
 ````
 python3 app.py
 ````
 
-I added functionality to bypass the leaflet javscript/html using a python module called folium.
+### __createMap.py__
+This script contains two functions. 
 
-The data classification and density options do not currently work for folium. The breaks are set to quantile as default. The output file is 'foliumMap.html' 
+__Web__
+Creates an output GEOJSON to be used with a web version of the Leaflet map. The GEOJSON is used in the index.html and map.js files included in the package. 
+
+This option has the most functionality, but is more robust.
+
+__Folium__
+This uses a Python module called Folium to create a Leaflet map. This bypasses the need for creating a new GEOJSON and using HTML or Javascript. 
+
+The Folium map does not have interactivity and the data classification and density options do not currently work. The breaks are set to quantile by default. 
 
 
 ## TODO
-
 To do list
 
 ### Folium
 * add class break support
 * add density support
-* add folium support to command line script
-* scale text doesn't show up on dark base maps
+* scale text doesn't show up on dark base maps (somehow change css class to 'leaflet-bar')
 
 ### Other
-* let user choose folium/web or both from GUI
 * start integrating county GEOJSONs
 * clean up and comment code
-
+* clean up readme
+* use pandas for the web function
+* create seperate tabs on the GUI for web vs folium
+* and a population normalization option (framework already in place with density)
 
 
 ## Built With
 
+* [PySal](http://pysal.readthedocs.io/en/latest/index.html) - data classification
+* [Pandas](https://pandas.pydata.org/) - data management
+* [Folium](http://folium.readthedocs.io/en/latest/) - python leaflet module
+* [Tkinter](https://wiki.python.org/moin/TkInter) - GUI
 * [Leaflet](http://leafletjs.com/) - web mapping framework
 * [Mapbox](https://www.mapbox.com/) - base maps
 * [ColorBrewer](http://pysal.readthedocs.io/en/latest/index.html) - color palletes
-* [PySal](http://pysal.readthedocs.io/en/latest/index.html) - data classification
-* [Folium](http://folium.readthedocs.io/en/latest/) - python leaflet module
-* [Tkinter](https://wiki.python.org/moin/TkInter) - GUI
+
 
 ## Data Sources
 
