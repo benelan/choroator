@@ -4,10 +4,12 @@ The United States Choropleth Map Creator was made by Ben Elan for a final projec
 
 ## Prerequisites
 
-To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need [PySal](http://pysal.readthedocs.io/en/latest/) which can be installed from the terminal (once Python is already installed) by typing
+To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need a few python modules which can be installed from the terminal (once Python is already installed) by typing
 
 ```
 pip install pysal
+pip install folium
+pip install pandas
 ```
 If you are having trouble with pip visit [their website](https://packaging.python.org/tutorials/installing-packages/).
 
@@ -79,8 +81,6 @@ This app is a self explanatory GUI built using TKinter.
 python3 app.py
 ````
 
-### __createFolium__
-
 I added functionality to bypass the leaflet javscript/html using a python module called folium.
 
 Command line package installation:
@@ -88,15 +88,8 @@ Command line package installation:
 pip install folium
 pip install pandas
 ```
-The CSV header is formated a little bit differently.
-* Header (first row):
-'State',Title (ie. State,Income)
 
-The rest of the CSV stays the same
-* Data (the rest):
-State,Data (ie. California,53489)
-
-The data classification is quantile. The output is 'foliumMap.html' 
+The data classification and basemap options do not currently work for folium. The breaks are quantile. The output is 'foliumMap.html' 
 
 
 ## TODO
@@ -109,7 +102,9 @@ To do list
 * add density support
 
 ### Other
+* let user choose folium/web or both from GUI
 * start integrating county GEOJSONs
+
 
 
 ## Built With
