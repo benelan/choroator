@@ -1,10 +1,10 @@
 # Choropleth Map Creator
 
-The United States Choropleth Map Creator was made by Ben Elan for a final project in Spring 2018. The project takes a user's csv file as an input and creates an interactive Leaflet map to be displayed in a web browser.
+The United States Choropleth Map Creator was made by Ben Elan for a final project in Spring 2018. The project takes a user's CSV file as an input and creates an interactive Leaflet map to be displayed in a web browser.
 
 ## Prerequisites
 
-To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need a few python modules which can be installed from the terminal (once Python is already installed) by typing
+To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need a few Python modules which can be installed from the terminal (once Python is already installed) by typing
 
 ```
 pip install pysal
@@ -23,7 +23,7 @@ Category,Units,Source (ie. Average Income,Dollars,data.gov)
 * Data (the rest):
 State,Data (ie. California,53489)
 
-If you have missing data, that is okay. Just do not put the State in the CSV file and the script will handle it properly.
+It is okay if you don't have data for every state. Leaving out State rows in the CSV will be handled properly.
 
 ## The Python Scripts
 
@@ -80,7 +80,7 @@ python3 dataImport.py jenks gold dark density
 
 ### __app.py__
 
-This GUI is built using TKinter. The app first prompts you to choose a csv file. The path defaults to the choropleth/data/csv directory but you can chose a file from anywhere in your operating system. You are then given the same options described above in GUI format.
+This GUI is built using TKinter. The app first prompts you to choose a CSV file. The path defaults to the choropleth/data/csv directory but you can chose a file from anywhere in your operating system. You are then given the same options described above in GUI format.
 ````
 python3 app.py
 ````
@@ -89,11 +89,13 @@ python3 app.py
 This script contains two functions. 
 
 __Web__
+
 Creates an output GEOJSON to be used with a web version of the Leaflet map. The GEOJSON is used in the index.html and map.js files included in the package. 
 
 This option has the most functionality, but is more robust.
 
 __Folium__
+
 This uses a Python module called Folium to create a Leaflet map. This bypasses the need for creating a new GEOJSON and using HTML or Javascript. 
 
 The Folium map does not have interactivity and the data classification and density options do not currently work. The breaks are set to quantile by default. 
