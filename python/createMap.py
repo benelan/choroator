@@ -17,8 +17,8 @@ def Web(csv_data, classification, color, base, grouping):
         data = json.load(open('../data/json/input.json')) # preset json format to work with the js
         print ("inserting data")
         # iterate through the csv
-        # inserting number data
-        # keeping track of the numbers of the data
+        # inserting value data
+        # keeping track of the values of the data
         # so that we can determine class breaks
         numbers = []
         for row in csvList:
@@ -139,7 +139,7 @@ def Folium(csv_data, color, base):
         location=[40, -96], 
         zoom_start=4, 
         tiles=('http://{s}.tiles.mapbox.com/v4/mapbox.' + baseMap + '/{z}/{x}/{y}.png?access_token=' + accessToken),
-        attr='<a href="https://www.mapbox.com/">Mapbox</a>')
+        attr='<a href="https://www.mapbox.com/">Mapbox</a> | <a href='+ columns[2] +'>Data Source</a>')
 
     # add data as choropleth
     m.choropleth(

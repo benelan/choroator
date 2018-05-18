@@ -58,7 +58,7 @@ __data normalization__
 * none (Default)
 * 'density' (divides by state's area)
 
-__mapType__
+__map type__
 * web (Default)
 * 'folium' (creates both web and folium maps)
 
@@ -104,12 +104,9 @@ The Folium map does not have interactivity and the data classification and densi
 ## TODO
 To do list
 
-### Folium
-* add class break support
-* add density support
-* scale text doesn't show up on dark base maps (somehow change css class to 'leaflet-bar')
-
-### Other
+* add class break support to folium
+* add density support to folium
+* scale text doesn't show up on dark base maps for folium (somehow change css class to 'leaflet-bar')
 * start integrating county GEOJSONs
 * clean up and comment code
 * clean up readme

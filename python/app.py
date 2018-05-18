@@ -60,7 +60,7 @@ def clicked():
     # create maps
     createMap.Web(csv_data, classification, color, baseMap, grouping)
     createMap.Folium(csv_data, color, baseMap)
-     
+
     # Done
     runtime = datetime.datetime.now() - start
     print ("RUN COMPLETED")
@@ -72,6 +72,7 @@ window = Tk()
 
 window.title("Choropleth Map Creator")
 
+# grab option values
 classVal = IntVar()
 colorVal = IntVar()
 baseVal = IntVar()
@@ -80,19 +81,22 @@ chk_state.set(False) # set check state
 
 window.update()
 
+# open file selection dialog
 window.filename =  filedialog.askopenfilename(
     initialdir = "../data/csv",
     title = "Select file",
     filetypes = (("csv files","*.csv"),("all files","*.*"))
 )
 
-title1 = Label(window, text="Select a data classification method")
+# classification options
+title1 = Label(window, text="Select a data classification method (web only)")
 jenks = Radiobutton(window,text='Jenks', value=1, variable=classVal)
 quantile = Radiobutton(window,text='Quantile', value=2, variable=classVal)
 equal = Radiobutton(window,text='Equal Interval', value=3, variable=classVal)
 percentile = Radiobutton(window,text='Percentile', value=4, variable=classVal)
 natural = Radiobutton(window,text='Natural Breaks', value=5, variable=classVal)
 
+# color options
 title2 = Label(window, text="Select a color palette")
 blue = Radiobutton(window,text='Blue', value=1, variable=colorVal)
 green = Radiobutton(window,text='Green', value=2, variable=colorVal)
@@ -100,6 +104,7 @@ red = Radiobutton(window,text='Red', value=3, variable=colorVal)
 purple = Radiobutton(window,text='Purple', value=4, variable=colorVal)
 gold = Radiobutton(window,text='Gold', value=5, variable=colorVal)
 
+# base map options
 title4 = Label(window, text="Select a base map")
 satellite = Radiobutton(window,text='Satellite', value=1, variable=baseVal)
 streets = Radiobutton(window,text='Streets', value=2, variable=baseVal)
@@ -107,32 +112,40 @@ outdoors = Radiobutton(window,text='Outdoors', value=3, variable=baseVal)
 dark = Radiobutton(window,text='Dark', value=4, variable=baseVal)
 light = Radiobutton(window,text='Light', value=5, variable=baseVal)
 
-title3 = Label(window, text="Enable Density")
+# density option
+title3 = Label(window, text="Enable Density (web only)")
 density = Checkbutton(window, text="Divide by the state's area", var=chk_state)
  
+# send it
 btn = Button(window, text="Create Map", command=clicked)
 
+#---GUI GRID POSITIONING---#
+# classifications
 title1.grid(column=0, row=0, columnspan=5, sticky=W)
-jenks.grid(column=0, row=4, sticky=W)
-quantile.grid(column=1, row=4, sticky=W)
+quantile.grid(column=0, row=4, sticky=W)
+jenks.grid(column=1, row=4, sticky=W)
 percentile.grid(column=2, row=4, sticky=W)
 equal.grid(column=3, row=4, sticky=W)
 natural.grid(column=4, row=4, sticky=W)
 
+
+# colors
 title2.grid(column=0, row=7, columnspan=5, sticky=W)
 blue.grid(column=0, row=8, sticky=W)
-green.grid(column=1, row=8, sticky=W)
-gold.grid(column=2, row=8, sticky=W)
+gold.grid(column=1, row=8, sticky=W)
+green.grid(column=2, row=8, sticky=W)
 red.grid(column=3, row=8, sticky=W)
 purple.grid(column=4, row=8, sticky=W)
 
+# base maps
 title4.grid(column=0, row=9, columnspan=5, sticky=W)
-dark.grid(column=0, row=10, sticky=W)
-light.grid(column=1, row=10, sticky=W)
+light.grid(column=0, row=10, sticky=W)
+dark.grid(column=1, row=10, sticky=W)
 satellite.grid(column=2, row=10, sticky=W)
 streets.grid(column=3, row=10, sticky=W)
 outdoors.grid(column=4, row=10, sticky=W)
 
+# density and submit button
 title3.grid(column=0, row=11, columnspan=5, sticky=W)
 density.grid (column=0, row=12, columnspan=5, sticky=W)
 btn.grid(column=0, row=13, columnspan=5, sticky=W)
