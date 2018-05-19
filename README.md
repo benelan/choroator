@@ -7,9 +7,9 @@ The United States Choropleth Map Creator was made by Ben Elan for a final projec
 To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need a few Python modules which can be installed from the terminal (once Python is already installed) by typing
 
 ```
-pip install pysal
-pip install pandas
-pip install folium
+python3 -m pip install pysal
+python3 -m pip install pandas
+python3 -m pip install folium
 ```
 If you are having trouble with pip visit [their website](https://packaging.python.org/tutorials/installing-packages/).
 
@@ -80,7 +80,7 @@ python3 dataImport.py jenks gold dark density
 
 ### __app.py__
 
-This GUI is built using TKinter. The app first prompts you to choose a CSV file. The path defaults to the choropleth/data/csv directory but you can chose a file from anywhere in your operating system. You are then given the same options described above in GUI format.
+This GUI is built using TKinter. The app first prompts you to choose a CSV file. The path defaults to the choropleth/data/csv directory but you can chose a file from anywhere in your operating system. There are two tabs to chose from, Web and Folium. You are then given the same options described above in GUI format.
 ````
 python3 app.py
 ````
@@ -104,15 +104,15 @@ The Folium map does not have interactivity and the data classification and densi
 ## TODO
 To do list
 
+* fix GUI background color
+* scale text doesn't show up on dark base maps for folium (somehow change css class to 'leaflet-bar')
 * add class break support to folium
 * add density support to folium
-* scale text doesn't show up on dark base maps for folium (somehow change css class to 'leaflet-bar')
-* start integrating county GEOJSONs
+* use pandas for the web function
+* and a population normalization option (framework already in place with density)
 * clean up and comment code
 * clean up readme
-* use pandas for the web function
-* create seperate tabs on the GUI for web vs folium
-* and a population normalization option (framework already in place with density)
+* start integrating county GEOJSONs
 
 
 ## Built With
