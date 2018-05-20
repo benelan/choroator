@@ -110,7 +110,7 @@ def clickedFolium():
     print(str(runtime))
     window.destroy()
  
-
+#----------------------------------TKINTER----------------------------------#
 window = Tk()
 window.title('Choropleth Map Creator')
 #window.geometry('500x500')
@@ -143,10 +143,11 @@ while rows < 50:
 nb = ttk.Notebook(window)
 nb.grid(row=1, column=0, columnspan=50, rowspan=49, sticky='NESW')
  
-# Adds tab 1 of the notebook
-page1 = ttk.Frame(nb)
-nb.add(page1, text='Web')
 
+#----------------------------------WEB TAB----------------------------------#
+# Adds tab 1 of the notebook
+page1 = Frame(nb, bg='white')
+nb.add(page1, text='Web')
 
 # classification options
 title1 = Label(page1, text="Select a data classification method")
@@ -179,8 +180,8 @@ density = Checkbutton(page1, text="Divide by the state's area", var=chk_state)
 # send it
 btn = Button(page1, text="Create Map", command=clickedWeb)
 
-#---GUI GRID POSITIONING---#
 
+#----------------------------------GUI GRID POSITIONING----------------------------------#
 # classifications
 title1.grid(column=0, row=0, columnspan=5, sticky=W)
 quantile.grid(column=0, row=4, sticky=W)
@@ -188,7 +189,6 @@ jenks.grid(column=1, row=4, sticky=W)
 percentile.grid(column=2, row=4, sticky=W)
 equal.grid(column=3, row=4, sticky=W)
 natural.grid(column=4, row=4, sticky=W)
-
 
 # colors
 title2.grid(column=0, row=7, columnspan=5, sticky=W)
@@ -212,13 +212,10 @@ density.grid (column=0, row=12, columnspan=5, sticky=W)
 btn.grid(column=0, row=13, columnspan=5, sticky=W)
 
 
-
-
-# Adds tab 2 of the notebook
-page2 = ttk.Frame(nb)
+#----------------------------------FOLIUM TAB----------------------------------#
+page2 = Frame(nb, bg='white')
 nb.add(page2, text='Folium')
  
-
 # color options
 foliumTitle = Label(page2, text="Select a color palette")
 foliumBlue = Radiobutton(page2,text='Blue', value=1, variable=colorVal)
@@ -238,8 +235,7 @@ foliumLight = Radiobutton(page2,text='Light', value=5, variable=baseVal)
 # send it
 foliumBtn = Button(page2, text="Create Map", command=clickedFolium)
 
-#---GUI GRID POSITIONING---#
-
+#----------------------------------GUI GRID POSITIONING----------------------------------#
 # colors
 foliumTitle.grid(column=0, row=7, columnspan=5, sticky=W)
 foliumBlue.grid(column=0, row=8, sticky=W)
