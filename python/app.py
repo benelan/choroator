@@ -232,25 +232,27 @@ foliumOutdoors = Radiobutton(page2,text='Outdoors', value=3, variable=baseVal)
 foliumDark = Radiobutton(page2,text='Dark', value=4, variable=baseVal)
 foliumLight = Radiobutton(page2,text='Light', value=5, variable=baseVal)
 
-# send it
+foliumTitle3 = Label(page2, text="Data classification is quantile")
 foliumBtn = Button(page2, text="Create Map", command=clickedFolium)
 
 #----------------------------------GUI GRID POSITIONING----------------------------------#
 # colors
-foliumTitle.grid(column=0, row=7, columnspan=5, sticky=W)
-foliumBlue.grid(column=0, row=8, sticky=W)
-foliumGold.grid(column=1, row=8, sticky=W)
-foliumGreen.grid(column=2, row=8, sticky=W)
-foliumRed.grid(column=3, row=8, sticky=W)
-foliumPurple.grid(column=4, row=8, sticky=W)
+foliumTitle.grid(column=0, row=1, columnspan=5, sticky=W)
+foliumBlue.grid(column=0, row=3, sticky=W)
+foliumGold.grid(column=1, row=3, sticky=W)
+foliumGreen.grid(column=2, row=3, sticky=W)
+foliumRed.grid(column=3, row=3, sticky=W)
+foliumPurple.grid(column=4, row=3, sticky=W)
 
 # base maps
-foliumTitle2.grid(column=0, row=9, columnspan=5, sticky=W)
-foliumLight.grid(column=0, row=10, sticky=W)
-foliumDark.grid(column=1, row=10, sticky=W)
-foliumSatellite.grid(column=2, row=10, sticky=W)
-foliumStreets.grid(column=3, row=10, sticky=W)
-foliumOutdoors.grid(column=4, row=10, sticky=W)
+foliumTitle2.grid(column=0, row=5, columnspan=5, sticky=W)
+foliumLight.grid(column=0, row=7, sticky=W)
+foliumDark.grid(column=1, row=7, sticky=W)
+foliumSatellite.grid(column=2, row=7, sticky=W)
+foliumStreets.grid(column=3, row=7, sticky=W)
+foliumOutdoors.grid(column=4, row=7, sticky=W)
+
+foliumTitle3.grid(column=0, row=11, columnspan=5, sticky=W)
 
 # submit button
 foliumBtn.grid(column=0, row=13, columnspan=5, sticky=W)

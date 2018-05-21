@@ -17,7 +17,7 @@ def main():
     classification = 'quantile'
     color = 'blue'
     base = 'satellite'
-    mapType = 'web'
+    mapType = 'both'
     csv_data = "../data/csv/data.csv"
 
     # change defaults based on command line arguements
@@ -33,9 +33,12 @@ def main():
                         mapType = sys.argv[5]
 
     # create maps
-    createMap.Web(csv_data, classification, color, base, grouping)
-
     if mapType == 'folium':
+        createMap.Folium(csv_data, color, base)
+    elif mapType == 'web':
+        createMap.Web(csv_data, classification, color, base, grouping)
+    else:
+        createMap.Web(csv_data, classification, color, base, grouping)
         createMap.Folium(csv_data, color, base)
 
     # Done

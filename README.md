@@ -33,7 +33,7 @@ There are three python files located in the python directory:
 
 This is the command line version. Name the CSV file you wish to use 'data.csv' and place it in the choropleth/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 5 command line arguments with the following options:
 
-__Data classification__
+__Data classification__ (web only)
 * 'quantile' (Default)
 * 'jenks'
 * 'percentile'
@@ -54,28 +54,29 @@ __base map__
 * 'streets' 
 * 'outdoors'
 
-__data normalization__
+__data normalization__ (web only)
 * none (Default)
 * 'density' (divides by state's area)
 
 __map type__
-* web (Default)
+* both (Default)
 * 'folium' (creates both web and folium maps)
+* 'web' (creates both web and folium maps)
 
 **Note: when normalizing by area, 'District of Columbia' is omitted from the pysal classsifaction functions**
 
 example runs:
-* defaults to quantile, blue, satellite, no normalization
+* defaults to quantile, blue, satellite, no normalization, creates both maps
 ```
 python3 dataImport.py
 ```
-* equal interval, color defaults to blue due to misspelling, light base map, no normalization
+* equal interval, color defaults to blue due to misspelling, light base map, no normalization, creates both maps
 ```
 python3 dataImport.py equal ultraviolet light
 ```
-* jenks classification, gold color scale, dark base map, normalized data based on area
+* jenks classification, gold color scale, dark base map, normalized data based on area, only creates a web map
 ```
-python3 dataImport.py jenks gold dark density
+python3 dataImport.py jenks gold dark density web
 ```
 
 ### __app.py__
@@ -108,9 +109,7 @@ To do list
 * add class break support to folium
 * add density support to folium
 * use pandas for the web function
-* and a population normalization option (framework already in place with density)
-* clean up and comment code
-* clean up readme
+* add a population normalization option (framework already in place with density)
 * start integrating county GEOJSONs
 
 
