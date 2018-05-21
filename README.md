@@ -31,7 +31,7 @@ There are three python files located in the python directory:
 
 ### __dataImport.py__
 
-This is the command line version. Name the CSV file you wish to use 'data.csv' and place it in the choropleth/data/csv directory. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 5 command line arguments with the following options:
+This is the command line version. Name the CSV file you wish to use 'data.csv' and place it in the choropleth/data/csv directory. Alternatively, change the file path in the script. If one of the command line arguements is misspelled or omitted the default values are chosen. The script takes 5 command line arguments with the following options:
 
 __Data classification__ (web only)
 * 'quantile' (Default)

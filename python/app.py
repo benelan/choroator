@@ -7,7 +7,7 @@ print("RUNNING APP")
 print("importing libraries")
 import datetime                             # timer
 start = datetime.datetime.now()
-from tkinter import *
+from tkinter import *                       # GUI
 from tkinter import ttk
 from tkinter import filedialog   
 import createMap                            # map creation functions
@@ -17,7 +17,7 @@ def clickedWeb():
     csv_data = window.filename
 
     print ("handling radio parameters")
-    grouping = chk_state.get()
+    grouping = densityVal.get()
 
     # class breaks
     breaks = classVal.get()
@@ -60,7 +60,6 @@ def clickedWeb():
 
     # create maps
     createMap.Web(csv_data, classification, color, baseMap, grouping)
-    #createMap.Folium(csv_data, color, baseMap)
 
     # Done
     runtime = datetime.datetime.now() - start
@@ -120,8 +119,8 @@ window.title('Choropleth Map Creator')
 classVal = IntVar()
 colorVal = IntVar()
 baseVal = IntVar()
-chk_state = BooleanVar()
-chk_state.set(False) # set check state
+densityVal = BooleanVar()
+densityVal.set(False) # set check state (density)
 
 window.update()
 
@@ -175,7 +174,7 @@ light = Radiobutton(page1,text='Light', value=5, variable=baseVal)
 
 # density option
 title3 = Label(page1, text="Enable Density")
-density = Checkbutton(page1, text="Divide by the state's area", var=chk_state)
+density = Checkbutton(page1, text="Divide by the state's area", var=densityVal)
  
 # send it
 btn = Button(page1, text="Create Map", command=clickedWeb)

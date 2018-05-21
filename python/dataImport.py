@@ -12,13 +12,13 @@ import createMap                    # map creation functions
 
 def main():
     print("handling command line arguements")
-    # set default
+    # set defaults
     grouping = 'none'
     classification = 'quantile'
     color = 'blue'
     base = 'satellite'
     mapType = 'both'
-    csv_data = "../data/csv/data.csv"
+    csv_data = "../data/csv/data.csv"   # path to csv file
 
     # change defaults based on command line arguements
     if len(sys.argv) > 1:

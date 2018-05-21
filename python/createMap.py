@@ -4,16 +4,18 @@
 import json
 import csv
 import pysal as ps     # data classification
-import webbrowser, os  # opening files
-import folium
-import pandas as pd
+import webbrowser, os  # opening files in browser
+import folium          # leaflet mapping module
+import pandas as pd    # csv/json handling in folium function
 
 #----------------------------------WEB----------------------------------#
 def Web(csv_data, classification, color, base, grouping):
     print ("opening csv")
     with open(csv_data, 'r') as f:
+        # create array of csv rows
         csvList = [row for row in csv.reader(f.read().splitlines())]
         print ("opening json")
+        # open json
         data = json.load(open('../data/json/input.json')) # preset json format to work with the js
         print ("inserting data")
         # iterate through the csv
@@ -24,22 +26,19 @@ def Web(csv_data, classification, color, base, grouping):
         for row in csvList:
             for i, item in enumerate(data["features"]):
                 if item["properties"]["name"] == row[0]:
+                    # checks if we want to divide by area
                     if grouping == True:
+                        area = float(data["features"][i]["properties"]["area"])          # area of state
+                        data["features"][i]["properties"]["number"] = float(row[1])/area # divide by areaß
                         # do not add D.C to numbers list for normalization
-                        # because it is so small and skew the classification
-                        if (data["features"][i]["properties"]["name"] == 'District of Columbia'):
-                            area = float(data["features"][i]["properties"]["area"])          # area of state
-                            data["features"][i]["properties"]["number"] = float(row[1])/area
-                        else:
-                            area = float(data["features"][i]["properties"]["area"])          # area of state
-                            # to find density you can divide by area
-                            data["features"][i]["properties"]["number"] = float(row[1])/area # density
+                        # because it is so small and skews the classification
+                        if (data["features"][i]["properties"]["name"] != 'District of Columbia'):
                             numbers.append(float(row[1])/area)
                     else:
                         data["features"][i]["properties"]["number"] = float(row[1])
                         numbers.append(float(row[1]))
         
-        # set global info
+        # add info to the GEOJSON
         if grouping == True:
             data["category"] = csvList[0][0] + ' Density'
             data["unit"] = csvList[0][1] + '/km<sup>2</sup>'
@@ -49,19 +48,20 @@ def Web(csv_data, classification, color, base, grouping):
 
         data["source"] = csvList[0][2]
 
-        # set colors. default to blue
+        # set colors. defaults to blue
         if (color != 'green') and (color != 'red') and (color != 'gold') and (color != 'purple'):
             data["color"] = 'blue'
         else:
             data["color"] = color
 
-        # setting basemap. default is satellite
+        # set basemap. default is satellite
         if (base != 'dark') and (base != 'light') and (base != 'streets') and (base != 'outdoors'):
             data["base"] = 'satellite'
         else:
             data["base"] = base
 
-        # setting data classifications. default is quantile
+        # set data classifications. default is quantile
+        # data classification from pysal
         if classification == 'jenks':                                   # Jenks
             classes = ps.esda.mapclassify.Fisher_Jenks(numbers, 6).bins
         elif classification == 'equal':                                 # Equal Interval
@@ -75,13 +75,14 @@ def Web(csv_data, classification, color, base, grouping):
         else:                                                           # default is Quantile
             classes = ps.esda.mapclassify.Quantiles(numbers, 6).bins
 
-        # array had weird formatting
+        # array from pysal had weird formatting
+        # so you need to flatten it
         c = []
         for item in classes:
                 c.append(item)
         data["grade"] = c
+
         print ("using {} breaks: {}".format(classification, str(data["grade"])))
-        
 
         print ("writing output json file")
         # dumping json data
@@ -98,7 +99,7 @@ def Web(csv_data, classification, color, base, grouping):
         with open('../data/json/output.json', 'w') as modified:
             modified.write(outfile)
 
-        # open
+        # open in browser
         webbrowser.open('file://' + os.path.realpath('../mapWeb.html'))
 
 
@@ -109,7 +110,7 @@ def Folium(csv_data, color, base):
     # read json
     state_geo = os.path.join('../data/json', 'input.json')
 
-    # ready csv
+    # read csv
     state_data = pd.read_csv(csv_data)
     columns = list(state_data.columns.values)
 
@@ -125,7 +126,7 @@ def Folium(csv_data, color, base):
     else:
         colorFolium = "GnBu";
 
-    # setting basemap. default is satellite
+    # set basemap. default is satellite
     if (base != 'dark') and (base != 'light') and (base != 'streets') and (base != 'outdoors'):
         baseMap = 'satellite'
     else:
