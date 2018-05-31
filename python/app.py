@@ -58,8 +58,14 @@ def clickedWeb():
     elif base == 5:      
         baseMap = 'light'
 
-    # create maps
-    createMap.Web(csv_data, classification, color, baseMap, grouping)
+    try:
+        # create map and handle errors
+        createMap.Web(csv_data, classification, color, baseMap, grouping)
+    except Exception as e:
+        print("\n#---------------------------------ERROR---------------------------------#")
+        print("Try again. Select a data classification method, color palette, and base map.")
+        sys.exit()
+
 
     # Done
     runtime = datetime.datetime.now() - start
@@ -100,8 +106,14 @@ def clickedFolium():
     elif base == 5:      
         baseMap = 'light'
 
-    # create map
-    createMap.Folium(csv_data, color, baseMap)
+    # create map and handle errors
+    try:
+        createMap.Folium(csv_data, color, baseMap)
+    except Exception as e:
+        print("\n#---------------------------------ERROR---------------------------------#")
+        print("Try again. Select a color palette and base map to create a Folium map.")
+        sys.exit()
+    
 
     # Done
     runtime = datetime.datetime.now() - start
@@ -113,7 +125,6 @@ def clickedFolium():
 window = Tk()
 window.title('Choropleth Map Creator')
 #window.geometry('500x500')
-#window.configure(background='black')
 
 # grab option values
 classVal = IntVar()

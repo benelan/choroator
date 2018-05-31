@@ -104,7 +104,7 @@ The Folium map does not have interactivity and the data classification and densi
 
 ## TODO
 To do list
-
+* add iframe support
 * scale text doesn't show up on dark base maps for folium (somehow change css class to 'leaflet-bar')
 * add class break support to folium
 * add density support to folium
