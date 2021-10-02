@@ -7,7 +7,7 @@ The United States Choropleth Map Creator was made by Ben Elan for a final projec
 To run the script you must have [Python 3](https://www.python.org/downloads/) installed. You also need a few Python modules which can be installed from the terminal (once Python is already installed) by typing
 
 ```
-python3 -m pip install pysal==1.14.4.post2
+python3 -m pip install pysal==1.14.4
 python3 -m pip install pandas==1.3.3
 python3 -m pip install folium==0.7.0
 ```
